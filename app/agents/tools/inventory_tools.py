@@ -38,7 +38,7 @@ MOCK_INVENTORY = [
     }
 ]
 
-@tool("Search Real Estate Inventory")
+@tool("search_real_estate_inventory")
 def search_inventory(query: str, max_budget_inr: int = None) -> str:
     """
     Search the real estate inventory for properties matching the customer's query.
