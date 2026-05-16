@@ -1,4 +1,4 @@
-from crewai.tools import tool
+from langchain_core.tools import tool
 import json
 
 # Mock Real Estate Inventory
