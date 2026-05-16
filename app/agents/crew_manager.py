@@ -57,8 +57,9 @@ def process_whatsapp_message(sender_number: str, message_body: str, media_url: s
         1. Determine their intent (e.g., looking for a new home, negotiating price, asking for location).
         2. Extract any key parameters like budget, preferred location (e.g., Andheri, Bandra), or BHK requirements.
         3. Formulate a clear instruction for the Real Estate Broker agent based on this information.
+        CRITICAL: If the customer asks about something completely unrelated to Real Estate (like vegetables, cars, tech support), DO NOT use any tools to contact the customer. Just return a final answer saying "I am a Real Estate AI, I can only help with property queries."
         """,
-        expected_output="A structured summary of the customer's intent and parameters, directed to the Real Estate Broker.",
+        expected_output="A structured summary of the customer's intent and parameters, or a polite rejection for out-of-domain queries.",
         agent=router_agent
     )
 
