@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import asyncio
+import re
 
 from langchain_groq import ChatGroq
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
@@ -77,6 +78,9 @@ CRITICAL RULES:
         # Guardrails check (simplified for MVP)
         if "minimum_price_inr" in final_reply.lower() or "prop00" in final_reply.lower():
             final_reply = "I found some great options for you, but I need to double-check the latest availability. Let me get back to you shortly! 😊"
+            
+        # Clean up any leaked internal tool XML tags from Llama 3
+        final_reply = re.sub(r'<function=.*?</function>', '', final_reply, flags=re.DOTALL).strip()
             
         print(f"Sending reply: {final_reply}")
         
